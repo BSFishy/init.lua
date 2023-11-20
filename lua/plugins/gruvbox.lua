@@ -10,8 +10,7 @@ return {
     "ellisonleao/gruvbox.nvim",
     opts = {
       overrides = {
-        ["@variable.typescript"] = { link = "GruvboxBlue" },
-        ["@variable.tsx"] = { link = "GruvboxBlue" },
+        ["@variable"] = { link = "GruvboxBlue" },
       },
     },
   },
