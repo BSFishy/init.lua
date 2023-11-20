@@ -8,6 +8,10 @@ return {
           hide_gitignored = false,
           hide_hidden = true,
         },
+        follow_current_file = {
+          enabled = false,
+          leave_dirs_open = true,
+        },
       },
     },
   },
