@@ -6,7 +6,15 @@
 -- * override the configuration of LazyVim plugins
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      overrides = {
+        ["@variable.typescript"] = { link = "GruvboxBlue" },
+        ["@variable.tsx"] = { link = "GruvboxBlue" },
+      },
+    },
+  },
 
   -- Configure LazyVim to load gruvbox
   {
