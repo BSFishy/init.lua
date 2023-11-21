@@ -13,6 +13,12 @@ return {
           leave_dirs_open = true,
         },
       },
+      buffers = {
+        follow_current_file = {
+          enabled = false,
+          leave_dirs_open = true,
+        },
+      },
     },
   },
 }
