@@ -13,6 +13,7 @@ return {
       transparent_mode = true,
       overrides = {
         ["@variable"] = { link = "GruvboxBlue" },
+        ["@namespace"] = { link = "GruvboxOrange" },
       },
     },
   },
