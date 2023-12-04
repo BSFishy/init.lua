@@ -10,7 +10,6 @@ return {
     "ellisonleao/gruvbox.nvim",
     --- @class GruvboxConfig
     opts = {
-      transparent_mode = true,
       overrides = {
         ["@variable"] = { link = "GruvboxBlue" },
         ["@namespace"] = { link = "GruvboxOrange" },
