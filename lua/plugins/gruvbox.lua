@@ -14,6 +14,7 @@ return {
         ["@variable"] = { link = "GruvboxBlue" },
         ["@namespace"] = { link = "GruvboxOrange" },
         ["@type.qualifier"] = { link = "GruvboxRed" },
+        ["@punctuation.delimiter"] = { link = "GruvboxOrange" },
       },
     },
   },
