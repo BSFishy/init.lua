@@ -1,9 +1,3 @@
--- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
---
--- In your plugin files, you can:
--- * add extra plugins
--- * disable/enabled LazyVim plugins
--- * override the configuration of LazyVim plugins
 return {
   -- add gruvbox
   {
@@ -14,7 +8,11 @@ return {
         ["@variable"] = { link = "GruvboxBlue" },
         ["@namespace"] = { link = "GruvboxOrange" },
         ["@type.qualifier"] = { link = "GruvboxRed" },
+
+        -- plain @punctuation doesn't work, so I need to do it like this
         ["@punctuation.delimiter"] = { link = "GruvboxOrange" },
+        ["@punctuation.bracket"] = { link = "GruvboxOrange" },
+        ["@punctuation.special"] = { link = "GruvboxOrange" },
       },
     },
   },
