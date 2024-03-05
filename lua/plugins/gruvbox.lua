@@ -7,6 +7,7 @@ return {
       overrides = {
         ["@variable"] = { link = "GruvboxBlue" },
         ["@namespace"] = { link = "GruvboxOrange" },
+        ["@module"] = { link = "GruvboxOrange" },
         ["@type.qualifier"] = { link = "GruvboxRed" },
 
         -- plain @punctuation doesn't work, so I need to do it like this
