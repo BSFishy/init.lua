@@ -21,3 +21,6 @@ vim.opt.breakindentopt = "shift:4"
 vim.opt.wrap = true
 -- Optionally, set a prefix for wrapped lines
 vim.opt.showbreak = "↪ "
+
+-- set lsp highlight settings lower priority than treesitter
+vim.highlight.priorities.semantic_tokens = 95
