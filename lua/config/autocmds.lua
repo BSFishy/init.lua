@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
+  pattern = { "*", "markdown" },
   callback = function()
     vim.opt_local.textwidth = 80 -- Set desired wrap width
     vim.opt_local.formatoptions:append("c") -- Wrap comments
