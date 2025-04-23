@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "proto",
   callback = function()
-    local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
     local has_protols = vim.tbl_contains(
       vim.tbl_map(function(c)
         return c.name
