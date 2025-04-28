@@ -11,6 +11,9 @@ return {
         protols = {
           filetypes = { "proto" },
         },
+        lua_ls = {
+          mason = false,
+        },
       },
       inlay_hints = {
         enabled = false,

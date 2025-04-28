@@ -23,4 +23,40 @@ vim.opt.wrap = true
 vim.opt.showbreak = "↪ "
 
 -- set lsp highlight settings lower priority than treesitter
-vim.highlight.priorities.semantic_tokens = 95
+vim.hl.priorities.semantic_tokens = 95
+
+---@class SemanticTokenModifiers
+---@field declaration boolean?
+---@field documentation boolean?
+---@field global boolean?
+
+---@class SemanticToken
+---@field line number
+---@field start_col number
+---@field end_col number
+---@field marked boolean
+---@field type string
+---@field modifiers SemanticTokenModifiers
+
+local boost = {
+  { type = "namespace", },
+  { type = "variable", },
+}
+
+-- update certain tokens to use a highlight of a higher priority
+vim.api.nvim_create_autocmd('LspTokenUpdate', {
+  callback = function(args)
+    --- @type SemanticToken
+    local token = args.data.token
+
+    for _, t in pairs(boost) do
+      if t.type and token.type == t.type then
+        vim.lsp.semantic_tokens.highlight_token(token, args.buf, args.data.client_id, "@lsp.type." .. t.type, { priority = 105 })
+      end
+
+      if t.modifier and token.modifiers[t.modifier] then
+        vim.lsp.semantic_tokens.highlight_token(token, args.buf, args.data.client_id, "@lsp.mod." .. t.type, { priority = 105 })
+      end
+    end
+  end,
+})
