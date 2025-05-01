@@ -41,8 +41,13 @@ vim.hl.priorities.semantic_tokens = 95
 local boost = {
   { type = "namespace" },
   { type = "variable" },
+
+  { modifier = "global" },
   { modifier = "format" },
   { modifier = "defaultLibrary", priority = 106 },
+
+  { treesitter = "true", group = "@boolean", priority = 107 },
+  { treesitter = "false", group = "@boolean", priority = 107 },
 }
 
 -- update certain tokens to use a highlight of a higher priority
@@ -50,6 +55,12 @@ vim.api.nvim_create_autocmd("LspTokenUpdate", {
   callback = function(args)
     --- @type SemanticToken
     local token = args.data.token
+    local node = vim.treesitter.get_node({
+      bufnr = args.buf,
+      pos = { token.line, token.start_col },
+    })
+
+    local ts_type = node and node:type() or ""
 
     for _, t in pairs(boost) do
       local priority = t.priority or 105
@@ -71,6 +82,10 @@ vim.api.nvim_create_autocmd("LspTokenUpdate", {
           "@lsp.mod." .. t.modifier,
           { priority = priority }
         )
+      end
+
+      if t.treesitter and ts_type == t.treesitter then
+        vim.lsp.semantic_tokens.highlight_token(token, args.buf, args.data.client_id, t.group, { priority = priority })
       end
     end
   end,
