@@ -46,6 +46,7 @@ local boost = {
   { modifier = "format" },
 
   { treesitter = "constant.builtin", priority = 106 },
+  { treesitter = "namespace.builtin", priority = 106 },
   { treesitter = "boolean", priority = 107 },
 }
 
