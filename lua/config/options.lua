@@ -39,23 +39,38 @@ vim.hl.priorities.semantic_tokens = 95
 ---@field modifiers SemanticTokenModifiers
 
 local boost = {
-  { type = "namespace", },
-  { type = "variable", },
+  { type = "namespace" },
+  { type = "variable" },
+  { modifier = "format" },
+  { modifier = "defaultLibrary", priority = 106 },
 }
 
 -- update certain tokens to use a highlight of a higher priority
-vim.api.nvim_create_autocmd('LspTokenUpdate', {
+vim.api.nvim_create_autocmd("LspTokenUpdate", {
   callback = function(args)
     --- @type SemanticToken
     local token = args.data.token
 
     for _, t in pairs(boost) do
+      local priority = t.priority or 105
       if t.type and token.type == t.type then
-        vim.lsp.semantic_tokens.highlight_token(token, args.buf, args.data.client_id, "@lsp.type." .. t.type, { priority = 105 })
+        vim.lsp.semantic_tokens.highlight_token(
+          token,
+          args.buf,
+          args.data.client_id,
+          "@lsp.type." .. t.type,
+          { priority = priority }
+        )
       end
 
       if t.modifier and token.modifiers[t.modifier] then
-        vim.lsp.semantic_tokens.highlight_token(token, args.buf, args.data.client_id, "@lsp.mod." .. t.type, { priority = 105 })
+        vim.lsp.semantic_tokens.highlight_token(
+          token,
+          args.buf,
+          args.data.client_id,
+          "@lsp.mod." .. t.modifier,
+          { priority = priority }
+        )
       end
     end
   end,

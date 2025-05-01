@@ -14,6 +14,9 @@ return {
         ["@punctuation.delimiter"] = { link = "GruvboxOrange" },
         ["@punctuation.bracket"] = { link = "GruvboxOrange" },
         ["@punctuation.special"] = { link = "GruvboxOrange" },
+
+        ["@lsp.mod.format"] = { link = "GruvboxPurple" },
+        ["@lsp.mod.defaultLibrary"] = { link = "GruvboxOrange" },
       },
     },
   },
