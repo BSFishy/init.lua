@@ -59,7 +59,10 @@ local boost = {
 
   { treesitter = "constant.builtin", priority = 106 },
   { treesitter = "namespace.builtin", priority = 106 },
+  { modifier = "defaultLibrary", priority = 106 },
   { treesitter = "boolean", priority = 107 },
+  { type = "method", priority = 107 },
+  { type = "macro", priority = 107 },
 }
 
 -- update certain tokens to use a highlight of a higher priority
