@@ -2,8 +2,20 @@
 ((identifier) @variable)
 
 ;; keywords
-((identifier) @keyword (#match? @keyword "^service$"))
-((identifier) @keyword (#match? @keyword "^config$"))
+((identifier) @keyword
+  (#any-of? @keyword
+    "service"
+    "config"
+  )
+)
+
+;; make keywords inside of list expressions
+((list_expression (expression (atom (identifier) @keyword)))
+  (#any-of? @keyword
+    "image"
+    "config"
+  )
+)
 
 ;; numbers and floats
 ((number) @number)
