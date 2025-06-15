@@ -20,6 +20,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.mora",
+  callback = function()
+    vim.bo.filetype = "mora"
+  end,
+})
+
 -- start the protols lsp for proto files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "proto",
