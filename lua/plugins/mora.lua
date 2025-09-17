@@ -1,3 +1,8 @@
+-- disable this for now
+if true then
+  return {}
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
