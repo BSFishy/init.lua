@@ -24,3 +24,6 @@ vim.opt.showbreak = "↪ "
 
 -- set lsp highlight settings lower priority than treesitter
 vim.hl.priorities.semantic_tokens = 95
+
+-- disable conceal
+vim.opt.conceallevel = 0
