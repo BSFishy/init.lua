@@ -2,6 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Set ruby lsp to use solargraph
+vim.g.lazyvim_ruby_lsp = "solargraph"
+
 -- Set visual identifiers for spaces, tabs, and other whitespace characters
 vim.opt.list = true
 vim.opt.listchars = {
