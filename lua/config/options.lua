@@ -5,6 +5,13 @@
 -- Disable mouse
 vim.opt.mouse = ""
 
+-- Reset root spec. By default, this includes lsp detected roots, but that falls
+-- apart in monorepos
+vim.g.root_spec = {
+  { ".git", "lua" },
+  "cwd",
+}
+
 -- Set ruby lsp to use solargraph
 vim.g.lazyvim_ruby_lsp = "solargraph"
 
