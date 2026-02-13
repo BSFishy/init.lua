@@ -18,7 +18,6 @@ function M.root_dir()
 
   return {
     function()
-      print(get())
       return "󱉭 " .. get()
     end,
     cond = function()
