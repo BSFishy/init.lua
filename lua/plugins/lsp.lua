@@ -299,11 +299,6 @@ return {
 
   -- mason
   {
-    "mason.nvim",
-    { "mason-org/mason-lspconfig.nvim", config = function() end },
-  },
-  { "mason-org/mason-lspconfig.nvim", config = function() end },
-  {
     "mason-org/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -338,5 +333,10 @@ return {
         end
       end)
     end,
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    lazy = true,
+    config = function() end
   },
 }

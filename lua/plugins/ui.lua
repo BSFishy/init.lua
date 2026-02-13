@@ -207,16 +207,15 @@ return {
 
   -- delimiters change color to indicate depth
   {
-    {
-      "HiPhish/rainbow-delimiters.nvim",
-      config = function()
-        vim.g.rainbow_delimiters = {
-          priority = {
-            [""] = 110,
-          },
-        }
-      end,
-    },
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "LazyFile",
+    config = function()
+      vim.g.rainbow_delimiters = {
+        priority = {
+          [""] = 110,
+        },
+      }
+    end,
   },
 
   -- icons
