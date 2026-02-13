@@ -1,0 +1,82 @@
+{
+  "PVC": {
+    "prefix": "ks-pvc",
+    "body": [
+      "---",
+      "# yaml-language-server: \\$schema=https://github.com/yannh/kubernetes-json-schema/raw/refs/heads/master/v1.33.3/persistentvolumeclaim.json",
+      "apiVersion: v1",
+      "kind: PersistentVolumeClaim",
+      "metadata:",
+      "  name: $1",
+      "spec:",
+      "  accessModes: [\"${2:ReadWriteOnce}\"]",
+      "  resources:",
+      "    requests:",
+      "      storage: ${3:1Gi}",
+      "  storageClassName: ceph-${4:regular}"
+    ]
+  },
+  "Flux Kustomization": {
+    "prefix": "ks-flux-kustomization",
+    "body": [
+      "---",
+      "# yaml-language-server: \\$schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json",
+      "apiVersion: kustomize.toolkit.fluxcd.io/v1",
+      "kind: Kustomization",
+      "metadata:",
+      "  name: &appname $2",
+      "  namespace: &namespace $1",
+      "spec:",
+      "  targetNamespace: *namespace",
+      "  commonMetadata:",
+      "    labels:",
+      "      app.kubernetes.io/name: *appname",
+      "  interval: 30m",
+      "  timeout: 5m",
+      "  path: \"./kubernetes/apps/$1/$2/app\"",
+      "  prune: true",
+      "  sourceRef:",
+      "    kind: GitRepository",
+      "    name: flux-system",
+      "    namespace: flux-system",
+      "  wait: false"
+    ]
+  },
+  "Kustomization": {
+    "prefix": "ks-kustomization",
+    "body": [
+      "---",
+      "# yaml-language-server: \\$schema=https://json.schemastore.org/kustomization",
+      "apiVersion: kustomize.config.k8s.io/v1beta1",
+      "kind: Kustomization",
+      "resources:",
+      "  - ./$1.yaml"
+    ]
+  },
+  "app-template Helm Release": {
+    "prefix": "ks-app-template",
+    "body": [
+      "---",
+      "# yaml-language-server: \\$schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json",
+      "apiVersion: helm.toolkit.fluxcd.io/v2",
+      "kind: HelmRelease",
+      "metadata:",
+      "  name: $1",
+      "spec:",
+      "  interval: 1h",
+      "  chartRef:",
+      "    kind: OCIRepository",
+      "    name: app-template",
+      "    namespace: flux-system",
+      "  install:",
+      "    remediation:",
+      "      retries: -1",
+      "  upgrade:",
+      "    cleanupOnFail: true",
+      "    remediation:",
+      "      retries: 3",
+      "  values:",
+      "    $2"
+    ]
+  }
+}
