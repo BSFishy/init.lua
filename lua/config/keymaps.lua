@@ -97,3 +97,10 @@ map("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "Signatu
 
 -- Diagnostics help
 map("n", "<leader>xx", function() vim.diagnostic.setloclist({ open = true }) end, { desc = "Diagnostics" })
+
+-- Debugging help
+map("n", "<leader>bl", function()
+  local s = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".")
+  vim.fn.setreg("+", s)
+  print("Copied: " .. s)
+end, { desc = "Copy current line:col to clipboard" })
