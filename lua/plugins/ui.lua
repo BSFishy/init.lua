@@ -253,6 +253,17 @@ return {
       scroll = { enabled = false },
       statuscolumn = { enabled = false }, -- we set this in options.lua
       words = { enabled = true },
+      gitbrowse = {
+        url_patterns = {
+          ["gitlab%.%w+%.?%w*"] = {
+            -- copy of `gitlab%.com` from default config
+            branch = "/-/tree/{branch}",
+            file = "/-/blob/{branch}/{file}#L{line_start}-L{line_end}",
+            permalink = "/-/blob/{commit}/{file}#L{line_start}-L{line_end}",
+            commit = "/-/commit/{commit}",
+          },
+        },
+      },
     },
     -- stylua: ignore
     keys = {
