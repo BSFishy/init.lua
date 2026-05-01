@@ -132,6 +132,16 @@ return {
   },
 
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "LazyFile",
+    opts = {
+      max_lines = 3,
+      trim_scope = "outer",
+      mode = "cursor",
+    },
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
     event = "VeryLazy",
